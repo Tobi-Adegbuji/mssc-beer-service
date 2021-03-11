@@ -1,0 +1,17 @@
+#This is a comment
+
+somekey: value
+
+somekey2: value #This is another comment
+
+#An Object
+myObject:
+  stringProperty: Hello World
+  numberProperty: 123
+  listProperty:
+    - val 1
+    - val 2
+    - val 3
+    - nestedObejct:
+        val4: 4
+        val5: 5
