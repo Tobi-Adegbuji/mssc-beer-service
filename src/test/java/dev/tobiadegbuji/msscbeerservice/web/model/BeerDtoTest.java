@@ -10,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.util.UUID;
 
 @Slf4j
 @JsonTest
@@ -25,7 +27,12 @@ class BeerDtoTest {
     @BeforeEach
     void setUp() {
         beerDto = BeerDto.builder()
+                .id(UUID.randomUUID())
+                .version(0)
+                .quantityOnHand(3)
                 .beerName("Corona")
+                .createdDate(OffsetDateTime.now())
+                .lastModifiedDate(OffsetDateTime.now())
                 .price(new BigDecimal("15.99"))
                 .beerStyle(BeerStyle.WHEAT)
                 .upc(15411515L)
