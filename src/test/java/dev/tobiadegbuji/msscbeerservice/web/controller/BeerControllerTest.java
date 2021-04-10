@@ -95,7 +95,7 @@ class BeerControllerTest {
                 .andExpect(status().isCreated())
         .andDo(MockMvcRestDocumentation.document("v1/beer",
                 requestFields(
-                        fields.withPath("id").ignored(), //Field is ignored since Client should not pass this as an Id
+                        fields.withPath("beer-id").ignored(), //Field is ignored since Client should not pass this as an Id
                         fields.withPath("version").ignored(),
                         fields.withPath("createdDate").ignored(),
                         fields.withPath("lastModifiedDate").ignored(),
