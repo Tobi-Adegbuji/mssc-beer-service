@@ -3,6 +3,7 @@ package dev.tobiadegbuji.msscbeerservice.web.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.tobiadegbuji.msscbeerservice.web.model.BeerDto;
+import dev.tobiadegbuji.msscbeerservice.web.model.BeerStyle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,7 +31,12 @@ class BeerControllerTest {
 
     @BeforeEach
     void setup() throws JsonProcessingException {
-        BeerDto beerDto = BeerDto.builder().build();
+        BeerDto beerDto = BeerDto.builder()
+                .beerName("Corona")
+                .price(new BigDecimal("15.99"))
+                .beerStyle(BeerStyle.WHEAT)
+                .upc(15411515L)
+                .build();
         beerDtoJson = objectMapper.writeValueAsString(beerDto);
     }
 
