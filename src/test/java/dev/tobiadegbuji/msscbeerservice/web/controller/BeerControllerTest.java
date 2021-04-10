@@ -70,7 +70,7 @@ class BeerControllerTest {
                                 parameterWithName("isCold").description("Is Beer Cold Query param") //Example of documenting request parameters
                         ),
                         responseFields(
-                                fieldWithPath("id").description("Id of Beer"), //Documenting A specific response field
+                                fieldWithPath("beer-id").description("Id of Beer"), //Documenting A specific response field
                                 fieldWithPath("version").description("Version number of record"),
                                 fieldWithPath("createdDate").description("Date Beer was created"),
                                 fieldWithPath("lastModifiedDate").description("Date Beer was last modified"),
