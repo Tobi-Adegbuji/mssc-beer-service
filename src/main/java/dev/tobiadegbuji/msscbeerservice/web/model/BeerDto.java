@@ -1,5 +1,6 @@
 package dev.tobiadegbuji.msscbeerservice.web.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,8 @@ import java.util.UUID;
 @Builder
 public class BeerDto {
 
+    //Realize JsonProperties will override any naming Strategy. Use JsonProperties if you really want to change the name of the json property
+    @JsonProperty("beer-id")
     @Null //Req will fail validation if they try to pass this field (Defensive Programming)
     private UUID id;
 
