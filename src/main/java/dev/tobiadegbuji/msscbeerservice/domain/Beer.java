@@ -30,9 +30,8 @@ public class Beer {
     @Column(updatable = false)
     private Timestamp createDate;
 
-
     @UpdateTimestamp
-    private Timestamp modifiedDate;
+    private Timestamp lastModifiedDate;
     private String beerName;
     private String beerStyle;
 
