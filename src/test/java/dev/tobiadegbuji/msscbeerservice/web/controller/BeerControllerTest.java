@@ -2,14 +2,20 @@ package dev.tobiadegbuji.msscbeerservice.web.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.tobiadegbuji.msscbeerservice.services.BeerService;
 import dev.tobiadegbuji.msscbeerservice.web.model.BeerDto;
 import dev.tobiadegbuji.msscbeerservice.web.model.BeerStyle;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.BDDMockito;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.constraints.ConstraintDescriptions;
@@ -43,6 +49,9 @@ class BeerControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @MockBean
+    private  BeerService beerService;
+
     private String beerDtoJson;
 
     @BeforeEach
@@ -54,10 +63,15 @@ class BeerControllerTest {
                 .upc(15411515L)
                 .build();
         beerDtoJson = objectMapper.writeValueAsString(beerDto);
+
+        BDDMockito.given(beerService.getById(ArgumentMatchers.any(UUID.class))).willReturn(beerDto);
+
     }
+
 
     @Test
     void getBeerById() throws Exception {
+
         //Make sure to use the RestDocReq Builders rather than servlet.request.MockMvcRequestBuilders
         mockMvc.perform(RestDocumentationRequestBuilders.get("/api/v1/beer/{beerId}", UUID.randomUUID().toString())
                 .param("isCold", "yes")
@@ -82,6 +96,7 @@ class BeerControllerTest {
                         )
                 ));
     }
+
 
     @Test
     void saveBeer() throws Exception {
